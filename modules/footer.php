@@ -1,13 +1,4 @@
 </div>
-    <!-- <footer class="footer-content">
-        <p>© Copyright 2024 By HCMUT CSE. Powered by Admin</p><br>
-        <p>&copy; Microprocessors & Microcontrollers Assignment. All Rights Reserved.</p>
-        <div class="social-icons">
-            <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook fa-lg"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter fa-lg"></i></a>
-            <a href="https://github.com" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a>
-        </div>
-    </footer> -->
     <footer class="text-white pt-4" style="background-color: #0388b3;">
         <div class="d-flex justify-content-center">
             <p class="my-0 text-center footer-text">&copy; Microprocessors & Microcontrollers Assignment. All Rights Reserved.</p>

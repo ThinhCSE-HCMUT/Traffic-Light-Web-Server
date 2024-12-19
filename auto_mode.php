@@ -1,7 +1,6 @@
 <?php
     require_once('site.php');
     loadHeader();
-    // echo '<link rel="stylesheet" href="styles.css">';
 ?>
 
 <section class="container text-center my-5 col-sm-12 col-md-8 col-lg-6 col-xl-6 mx-auto">

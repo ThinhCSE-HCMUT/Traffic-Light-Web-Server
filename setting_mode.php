@@ -8,15 +8,15 @@
     <div id="label-group" class="d-grid gap-4 col-6 mx-auto mt-3">
         <div class="input-group input-group-lg d-flex" id="red-label">
             <label class="input-group-text text-uppercase text-white bg-danger col-8 justify-content-center" for="Red Time">Timer Red Led (s)</label>
-            <input class="form-control col-4 text-center text-danger" type="number" id="Red Time" placeholder="0">
+            <input class="form-control col-4 text-center text-danger" type="number" id="Red Time" placeholder="0" min="0" max="999">
         </div>
         <div class="input-group input-group-lg d-flex" id="green-label">
             <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led (s)</label>
-            <input class="form-control col-4 text-center text-success" type="number" id="Green Time" placeholder="0">
+            <input class="form-control col-4 text-center text-success" type="number" id="Green Time" placeholder="0" min="0" max="999">
         </div>
         <div class="input-group input-group-lg d-flex" id="yellow-label">
             <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led (s)</label>
-            <input class="form-control col-4 text-center text-warning" type="number" id="Yellow Time" placeholder="0">
+            <input class="form-control col-4 text-center text-warning" type="number" id="Yellow Time" placeholder="0" min="0" max="999">
         </div>
         <!-- <a id="switch-btn" href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to switch LED modifying">Switch LED Modifying</a>
         <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to increase time">Increase Time</a>

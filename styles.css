@@ -1,88 +1,16 @@
-/* General styles */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-h1 {
-    font-weight: bold;
-}
-
-h2, p {
-    color: #555;
-}
-
-/* Navbar styles */
-.navbar {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand img.logo {
-    height: 80px;
-    margin-right: 10px;
-}
-
-/* Center content */
-.center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    gap: 20px; /* Khoảng cách giữa các nút */
-}
-
-/* Footer styles */
-footer {
-    position: fixed; /* Cố định vị trí */
-    bottom: 0; /* Dính vào cuối trang */
-    width: 100%; /* Chiều rộng chiếm toàn bộ trang */
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 10px 0; /* Giảm padding để phù hợp với cố định */
-    z-index: 10; /* Đảm bảo footer luôn hiển thị phía trên */
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-content p {
-    margin: 0;
-    font-size: 14px;
-    color: white;
-}
-
-.social-icons a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: #0795df;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+@media (max-width: 575.98px) {
+    .input-group-lg>.input-group-text, 
+    .input-group-lg>.form-control {
+        font-size: 80%;
+        font-weight: 200%;
+        text-transform: capitalize !important;
+    }
+    
+    a.btn{
+        font-size: 100%;
     }
 
-    .center button {
-        width: 90%; /* Nút rộng hơn trên màn hình nhỏ */
-    }
-}
-
-@media (max-width: 576px) {
-    h1 {
-        font-size: 2rem;
+    .footer-text{
+        font-size: 80%;
     }
 }

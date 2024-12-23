@@ -51,20 +51,44 @@
             <div id="label-group" class="d-grid gap-4 col-6 mx-auto mt-3">
                 <div class="input-group input-group-lg d-flex" id="red-label">
                     <label class="input-group-text text-uppercase text-white bg-danger col-8 justify-content-center" for="Red Time">Timer Red Led (s)</label>
-                    <input class="form-control col-4 text-center text-danger" type="number" id="Red Time" placeholder="0" min="0" max="999">
+                    <input
+                        class="form-control col-4 text-center text-danger"
+                        type="number"
+                        id="Red Time"
+                        placeholder="0"
+                        min="0"
+                        max="999"
+                        onclick="notifySelected('SETTIRED')"
+                        onblur="onInputBlur()">
                 </div>
                 <div class="input-group input-group-lg d-flex" id="green-label">
                     <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led (s)</label>
-                    <input class="form-control col-4 text-center text-success" type="number" id="Green Time" placeholder="0" min="0" max="999">
+                    <input
+                        class="form-control col-4 text-center text-success"
+                        type="number"
+                        id="Green Time"
+                        placeholder="0"
+                        min="0"
+                        max="999"
+                        onclick="notifySelected('SETTIGREEN')"
+                        onblur="onInputBlur()">
                 </div>
                 <div class="input-group input-group-lg d-flex" id="yellow-label">
                     <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led (s)</label>
-                    <input class="form-control col-4 text-center text-warning" type="number" id="Yellow Time" placeholder="0" min="0" max="999">
+                    <input
+                    class="form-control col-4 text-center text-warning"
+                    type="number"
+                    id="Yellow Time"
+                    placeholder="0"
+                    min="0"
+                    max="999"
+                    onclick="notifySelected('SETTIYELLOW')"
+                    onblur="onInputBlur()">
                 </div>
                 <!-- <a id="switch-btn" href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to switch LED modifying">Switch LED Modifying</a>
                 <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to increase time">Increase Time</a>
                 <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to decrease time">Decrease Time</a> -->
-                <a href="#" class="btn btn-lg btn-primary" role="button" title="Tap this to set time">Set Time</a>
+                <a href="#" class="btn btn-lg btn-primary" role="button" title="Tap this to set time" onclick="notifySelected('SETTIME')">Set Time</a>
                 <a href="./" class="btn btn-lg btn-info text-white" role="button">Cancel</a>
             </div>
         </section>
@@ -80,5 +104,32 @@
         </ul>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function notifySelected(mode) {
+            const valueMap = {
+                SETTIGREEN: document.getElementById("Green Time").value,
+                SETTIRED: document.getElementById("Red Time").value,
+                SETTIYELLOW: document.getElementById("Yellow Time").value,
+            };
+        
+            const selectedValue = valueMap[mode] || 0;
+            const url = `/mode?type=${mode}&value=${selectedValue}`;
+        
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        console.log(`Mode ${mode} with value ${selectedValue} successfully sent to ESP32`);
+                    } else {
+                        console.error(`Failed to send mode ${mode} to ESP32`);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+        function onInputBlur() {
+            notifySelected("SETTI"); // Gửi tín hiệu quay lại SETTI_MODE
+            console.log("Returned to SETTI_MODE");
+        }
+    </script>
 </body>
 </html>

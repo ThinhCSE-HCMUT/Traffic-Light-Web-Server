@@ -60,11 +60,10 @@
                         max="999"
                         onclick="notifySelected('SETTIRED')"
                         onblur="onInputBlur()">
-                     <div id="red-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
+                    <div id="red-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
-                 
                 <div class="input-group input-group-lg d-flex" id="green-label">
-                    <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led (s)</label>
+                    <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led</label>
                     <input
                         class="form-control col-4 text-center text-success"
                         type="number"
@@ -77,7 +76,7 @@
                     <div id="green-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
                 <div class="input-group input-group-lg d-flex" id="yellow-label">
-                    <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led (s)</label>
+                    <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led</label>
                     <input
                     class="form-control col-4 text-center text-warning"
                     type="number"
@@ -149,7 +148,7 @@
                 event.preventDefault();
             }
         });
-      
+        
         function notifySelected(mode) {
             const valueMap = {
                 SETTIGREEN: document.getElementById("Green Time").value,

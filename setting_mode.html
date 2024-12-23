@@ -50,24 +50,24 @@
             <h1 class="text-primary text-center fw-bold">Running Setting Mode</h1>
             <div id="label-group" class="d-grid gap-4 col-6 mx-auto mt-3">
                 <div class="input-group input-group-lg d-flex" id="red-label">
-                    <label class="input-group-text text-uppercase text-white bg-danger col-8 justify-content-center" for="Red Time">Timer Red Led (s)</label>
+                    <label class="input-group-text text-uppercase text-white bg-danger col-8 justify-content-center" for="Red Time">Timer Red Led</label>
                     <input class="form-control col-4 text-center text-danger" type="number" id="Red Time" placeholder="0" min="0" max="999">
+                    <div id="red-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
                 <div class="input-group input-group-lg d-flex" id="green-label">
-                    <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led (s)</label>
+                    <label  class="input-group-text text-uppercase text-white bg-success col-8 justify-content-center" for="Green Time">Timer Green Led</label>
                     <input class="form-control col-4 text-center text-success" type="number" id="Green Time" placeholder="0" min="0" max="999">
+                    <div id="green-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
                 <div class="input-group input-group-lg d-flex" id="yellow-label">
-                    <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led (s)</label>
+                    <label class="input-group-text text-uppercase text-white bg-warning col-8 justify-content-center" for="Yellow Time">Timer Yellow Led</label>
                     <input class="form-control col-4 text-center text-warning" type="number" id="Yellow Time" placeholder="0" min="0" max="999">
+                    <div id="yellow-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
-                <!-- <a id="switch-btn" href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to switch LED modifying">Switch LED Modifying</a>
-                <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to increase time">Increase Time</a>
-                <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to decrease time">Decrease Time</a> -->
-                <a href="#" class="btn btn-lg btn-primary" role="button" title="Tap this to set time">Set Time</a>
+                <a href="#" class="btn btn-lg btn-primary" role="button" title="Tap this to set time" id="set-time">Set Time</a>
                 <a href="./" class="btn btn-lg btn-info text-white" role="button">Cancel</a>
             </div>
-        </section>
+        </section>  
     </div>
     <footer class="text-white pt-4" style="background-color: #0388b3;">
         <div class="d-flex justify-content-center">
@@ -79,6 +79,52 @@
             <li class="list-inline-item"><a href="https://www.youtube.com/" class="text-white"><i class="fa-brands fa-youtube"></i></a></li>
         </ul>
     </footer>
+    
+    <script>
+        // Function to validate input values
+        function validateInput() {
+            let isValid = true;
+
+            // Get the input values
+            const redTime = document.getElementById("Red Time");
+            const greenTime = document.getElementById("Green Time");
+            const yellowTime = document.getElementById("Yellow Time");
+    
+            // Get the warning messages
+            const redWarning = document.getElementById("red-warning");
+            const greenWarning = document.getElementById("green-warning");
+            const yellowWarning = document.getElementById("yellow-warning");
+    
+            // Reset previous warnings
+            redWarning.style.display = "none";
+            greenWarning.style.display = "none";
+            yellowWarning.style.display = "none";
+    
+            // Validate Red Time
+            if (redTime.value < 0 || redTime.value > 999) {
+                redWarning.style.display = "block";
+                isValid = false;
+            }
+            // Validate Green Time
+            if (greenTime.value < 0 || greenTime.value > 999) {
+                greenWarning.style.display = "block";
+                isValid = false;
+            }
+            // Validate Yellow Time
+            if (yellowTime.value < 0 || yellowTime.value > 999) {
+                yellowWarning.style.display = "block";
+                isValid = false;
+            }
+            return isValid;
+        }
+        // Attach the validation to the "Set Time" button
+        document.getElementById("set-time").addEventListener("click", function(event) {
+            // Prevent form submission if invalid
+            if (!validateInput()) {
+                event.preventDefault();
+            }
+        });
+    </script>      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

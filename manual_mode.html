@@ -49,9 +49,9 @@
         <section class="container text-center my-5 col-sm-12 col-md-8 col-lg-6 col-xl-6 mx-auto">
             <h1 class="text-primary text-center fw-bold">Running Manual Mode</h1>
             <div class="d-grid gap-4 col-6 mx-auto mt-5">
-                <a href="#" class="btn btn-lg btn-danger text-uppercase" role="button" 
+                <a href="#" class="btn btn-lg btn-danger text-uppercase" role="button" onclick="sendOddOrEven('REDODDGREEN')"
                 title="Tap this to switch to RED at Odd Road and GREEN at Even Road">Switch to RED at Odd Road and GREEN at Even Road</a>
-                <a href="#" class="btn btn-lg btn-success text-uppercase" role="button" 
+                <a href="#" class="btn btn-lg btn-success text-uppercase" role="button" onclick="sendOddOrEven('REDEVENGREEN')"
                 title="Tap this to switch to RED at Even Road and GREEN at Odd Road">Switch to RED at Even Road and GREEN at Odd Road</a>
                 <a href="./" class="btn btn-lg btn-info text-white" role="button">Cancel</a>
             </div>
@@ -68,5 +68,19 @@
         </ul>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function sendOddOrEven(type) {
+            const url = `/mode?type=${type}`;
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        console.log(`Mode ${type} successfully sent to ESP32`);
+                    } else {
+                        console.error(`Failed to send mode ${type} to ESP32`);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>

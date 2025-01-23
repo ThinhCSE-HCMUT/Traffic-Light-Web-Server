@@ -59,7 +59,7 @@
                         min="0"
                         max="999"
                         onclick="notifySelected('SETTIRED')"
-                        onblur="onInputBlur(event,'RED');notifySelected('SETTI')">
+                        onblur="onInputBlur(event,'RED')">
                     <div id="red-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
                 <div class="input-group input-group-lg d-flex" id="green-label">
@@ -72,7 +72,7 @@
                         min="0"
                         max="999"
                         onclick="notifySelected('SETTIGREEN')"
-                        onblur="onInputBlur(event,'GREEN');notifySelected('SETTI')">
+                        onblur="onInputBlur(event,'GREEN')">
                     <div id="green-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
                 <div class="input-group input-group-lg d-flex" id="yellow-label">
@@ -85,12 +85,9 @@
                     min="0"
                     max="999"
                     onclick="notifySelected('SETTIYELLOW')"
-                    onblur="onInputBlur(event,'YELLOW');notifySelected('SETTI')">
+                    onblur="onInputBlur(event,'YELLOW')">
                     <div id="yellow-warning" class="text-danger mt-4 mx-auto" style="display: none;">Value must be between 0 and 999.</div>
                 </div>
-                <!-- <a id="switch-btn" href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to switch LED modifying">Switch LED Modifying</a>
-                <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to increase time">Increase Time</a>
-                <a href="#" class="btn btn-rsv btn-lg btn-primary" role="button" title="Tap this to decrease time">Decrease Time</a> -->
                 <a href="#" class="btn btn-lg btn-primary" role="button" title="Tap this to set time" id="set-time" onclick="sendButton('SETTIME')">Set Time</a>
                 <a href="./" class="btn btn-lg btn-info text-white" role="button">Cancel</a>
             </div>
@@ -129,13 +126,14 @@
                 })
                 .catch(error => console.error('Error:', error));
         }
-        
+
+        let isButtonClicked = false;
         function sendButton(type) {
+            isButtonClicked = true;
             const redTime = setRed || 0;
             const greenTime = setGreen || 0;
             const yellowTime = setYellow || 0;
 
-            // Tạo URL với các tham số giá trị
             const url = `/mode?type=${type}&red=${redTime}&green=${greenTime}&yellow=${yellowTime}`;
             fetch(url)
                 .then(response => {
@@ -151,7 +149,7 @@
                 localStorage.setItem("greenTime", greenTime);
                 localStorage.setItem("yellowTime", yellowTime);
 
-                // Cập nhật placeholder
+                // Update placeholder
                 document.getElementById("Red Time").placeholder = `${redTime}`;
                 document.getElementById("Green Time").placeholder = `${greenTime}`;
                 document.getElementById("Yellow Time").placeholder = `${yellowTime}`;
@@ -161,11 +159,9 @@
         let setGreen = localStorage.getItem("greenTime") || "0";
         let setYellow = localStorage.getItem("yellowTime") || "0";
         function onInputBlur(event, color) {
-                // Phát tín hiệu quay lại SETTI_MODE
-
             const inputField = event.target;
             const inputValue = inputField.value;
-
+    
             switch(color)
             {
                 case 'RED':
@@ -180,7 +176,15 @@
                 default:
                     break;
             }
-            inputField.value = "";
+            setTimeout(() => {
+                inputField.value = "";
+                if (isButtonClicked) {
+                    isButtonClicked = false; // Reset the flag
+                    return;
+                }
+
+                notifySelected('SETTI');
+            }, 20);
         }
         
 
@@ -227,7 +231,7 @@
             const greenTime = localStorage.getItem("greenTime") || "0";
             const yellowTime = localStorage.getItem("yellowTime") || "0";
         
-            // Đặt giá trị placeholder cho từng ô nhập liệu
+            // Reset placeholder for input value
             document.getElementById("Red Time").placeholder = redTime;
             document.getElementById("Green Time").placeholder = greenTime;
             document.getElementById("Yellow Time").placeholder = yellowTime;
